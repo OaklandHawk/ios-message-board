@@ -22,6 +22,7 @@ class MessageThreadController {
 		var request = URLRequest(url: urlIdentifier)
 		request.httpMethod = "PUT"
 		print(request)
+		
 		do {
 			let encoder = JSONEncoder()
 			request.httpBody = try encoder.encode(message)
@@ -41,7 +42,40 @@ class MessageThreadController {
 			
 			self.messageThreads.append(message)
 			completion(nil)
-		}.resume()
 		
+			}.resume()
 	}
+	
+	func createMessage(parentThread: MessageThread, text: String, sender: String, completion: @escaping (Error?) -> Void) {
+		let newMessage = MessageThread.Message(text: text, sender: sender)
+		let url = MessageThreadController.baseURL
+		
+		let urlIdentifier = url.appendingPathComponent(parentThread.identifier)
+		var urlMessages = urlIdentifier.appendingPathComponent("messages")
+		urlMessages.appendPathExtension("json")
+		
+		var request = URLRequest(url: urlMessages)
+		request.httpMethod = "POST"
+		
+		do {
+			let encoder = JSONEncoder()
+			request.httpBody = try encoder.encode(newMessage)
+		} catch {
+			print(error)
+			completion(error)
+			return
+		}
+		
+		URLSession.shared.dataTask(with: request) { (_, _, error) in
+		if let error = error {
+			print(error)
+			completion(error)
+			return
+		}
+		
+			parentThread.messages.append(newMessage)
+			completion(nil)
+		}.resume()
+	}
+	
 }

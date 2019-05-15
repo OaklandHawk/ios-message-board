@@ -18,7 +18,9 @@ class MessageThread: Codable, Equatable {
 	}
 	
 	init(title: String, identifier: String = UUID().uuidString, messages: [MessageThread.Message] = [] ) {
-		
+		self.title = title
+		self.identifier = identifier
+		self.messages = messages
 	}
 	
 	struct Message: Equatable, Codable {
@@ -27,7 +29,9 @@ class MessageThread: Codable, Equatable {
 		let timestamp: Date
 		
 		init(text: String, sender: String, timestamp: Date = (Date())) {
-			
+			self.text = text
+			self.sender = sender
+			self.timestamp = timestamp
 		}
 		
 	}
