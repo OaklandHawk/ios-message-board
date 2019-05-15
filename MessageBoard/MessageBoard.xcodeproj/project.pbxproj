@@ -63,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				F5680B20228CA88200FADF88 /* AppDelegate.swift */,
+				F5680B3E228CCAC400FADF88 /* ModelController */,
 				F5680B3C228CB55300FADF88 /* ViewController */,
 				F5680B3D228CB57000FADF88 /* Model */,
 				F5680B24228CA88200FADF88 /* Main.storyboard */,
@@ -86,10 +87,17 @@
 		F5680B3D228CB57000FADF88 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F5680B3A228CB4CD00FADF88 /* MessageThreadController.swift */,
 				F5680B38228CAEEA00FADF88 /* MessageThread.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		F5680B3E228CCAC400FADF88 /* ModelController */ = {
+			isa = PBXGroup;
+			children = (
+				F5680B3A228CB4CD00FADF88 /* MessageThreadController.swift */,
+			);
+			path = ModelController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
